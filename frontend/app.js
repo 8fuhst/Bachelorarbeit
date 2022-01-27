@@ -17,8 +17,25 @@ function requestWord() {
     request.send()
 }
 
+function sendData(data) {
+    const url = 'http://localhost:8080/rest/addData';
+    data = JSON.stringify(data)
+    //const request = new XMLHttpRequest();
+    console.log(data);
+    fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: data
+    }).then(res => {
+        console.log("Request complete! Response: ", res);
+    }).catch(err => {
+        console.error(err);
+    });
+}
+
 var subtract = 0;
 var typingData = {};
+
 
 document.getElementById("typed").addEventListener("keydown", function (event) {
     var key_name = event.key.toLowerCase();
@@ -59,14 +76,24 @@ document.getElementById("typed").addEventListener("keyup", function (event) {
     hold_time = relative_time - typingData[str.replace("_up", "_down")];
     typingData[str] = relative_time;
     typingData[hold_str] = hold_time;
-    console.log(typingData);
+    //console.log(typingData);
 
     // TODO: Implement
 
-    if(document.getElementById("typed").value === current) {
-        if(Object.keys(typingData).length == current.length*3) { //Check for clear typing (no typos etc.)
+    if(document.getElementById("typed").value === current && key_name === current.slice(-1)) {
+        if(Object.keys(typingData).length === current.length*3) { //Check for clear typing (no typos etc.)
+            var dummy = {
+                "userID": 1,
+                "age": 22,
+                "typingSkill": 3,
+                "layout": "qwertz",
+                "word": "water",
+                "timings": typingData
+            }
+
             // TODO: Send Data to Backend for Database
             // TODO: After implementing: Check if fast typing still pushes past hold and up times into next Object!
+            sendData(dummy);
         }
         document.getElementById("typed").value = '';
         typingData = {};
