@@ -6,14 +6,48 @@
     <link rel="stylesheet" href="main.css">
 
 </head>
-<body onload="requestWord()">
-<p style="text-align:center">Please type the following word:</p>
-<p style="text-align:center"><span id="word"></span></p>
-<p style="text-align:center">
-    <input id="typed" type="text">
-</p>
-<script src="app.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<noscript>Please enable JavaScript, otherwise no data will be sent!</noscript>
+<body>
+<h1>Keystroke Data Collection</h1>
+<p>Hey, and thank you for participating in my study! On the next page, you will be asked to type
+    some randomly selected words in a textfield. Once you've completed a word, the next one will automatically
+    appear. You can type as many words as you like, there is no finish line, data is saved after every word.
+    If you make a typo, just correct it and finish the word normally. Do mind that the same word can appear two
+    times in a row - once the textfield is cleared, you're good to go!</p>
+
+<p> Please note, that the intention of this study is to collect data via keyboards. Thus, please refrain
+    from using this website with a mobile, tablet, or other touch based input devices!</p>
+
+<p>Before you start, please provide some information about you. All data will be anomynized with an id
+    that cannot be traced back to you.</p>
+
+<p>Your Age:</p>
+<input id="age" placeholder="Age" type="number" min="0" max="100">
+
+<p>How proficient/fast are you with your typing skills on a scale of 0-3, 0 being not proficient/slow typing, and 3 being very proficient/very fast typing?</p>
+<input id="proficiency" placeholder="Proficiency" type="number" min="0" max="3">
+
+<p>Which keyboard layout are you using right now? E.g. QWERTZ, QWERTY, Neo...</p>
+<input id="layout" placeholder="Keyboard Layout" type="text">
+
+<p>Are you currently typing on a laptop or desktop keyboard?</p>
+<div>
+    <input id="desktop_keyboard" type="radio" value="desktop" name="keyboard">
+    <label for="desktop_keyboard">Desktop</label>
+    <input id="laptop_keyboard" type="radio" value="laptop" name="keyboard">
+    <label for="laptop_keyboard">Laptop</label>
+</div>
+
+<p>Have you already received an ID from this site (if this is your first visit: NO!)?</p>
+<div>
+    <input id="yes_id" type="radio" value="yes_id" name="id">
+    <label for="yes_id">Yes</label>
+    <input id="no_id" type="radio" value="no_id" name="id">
+    <label for="no_id">No</label>
+</div>
+<p></p>
+<p><span id="id_entry"></span></p>
+<!-- TODO: ADD CHECKBOX FOR CONSENT OF KEYLOGGING!-->
+<button id="start_button" onclick="proceed()" disabled>Start!</button>
+<script src="welcomeSite.js"></script>
 </body>
 </html>

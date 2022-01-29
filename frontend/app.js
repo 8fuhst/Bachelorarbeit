@@ -36,7 +36,6 @@ function sendData(data) {
 var subtract = 0;
 var typingData = {};
 
-
 document.getElementById("typed").addEventListener("keydown", function (event) {
     var key_name = event.key.toLowerCase();
     var down_time = event.timeStamp;
