@@ -17,7 +17,7 @@
 <p> Please note, that the intention of this study is to collect data via keyboards. Thus, please refrain
     from using this website with a mobile, tablet, or other touch based input devices!</p>
 
-<p>Before you start, please provide some information about you. All data will be anomynized with an id
+<p>Before you start, please provide some information about you. All data will be anonymized with an id
     that cannot be traced back to you.</p>
 
 <p>Your Age:</p>
@@ -37,17 +37,28 @@
     <label for="laptop_keyboard">Laptop</label>
 </div>
 
-<p>Have you already received an ID from this site (if this is your first visit: NO!)?</p>
+<p>Are you currently enrolled in a Computer Science (or related) study program?</p>
+<div>
+    <input id="yes_study" type="radio" value="yes_id" name="study">
+    <label for="yes_study">Yes</label>
+    <input id="no_study" type="radio" value="no_id" name="study">
+    <label for="no_study">No</label>
+</div>
+
+<p>Have you already received an ID from this site (if this is your first visit: NO!)? Please remember your ID if you want
+to come back later and enter more data!</p>
 <div>
     <input id="yes_id" type="radio" value="yes_id" name="id">
     <label for="yes_id">Yes</label>
     <input id="no_id" type="radio" value="no_id" name="id">
     <label for="no_id">No</label>
 </div>
-<p></p>
-<p><span id="id_entry"></span></p>
+<p>Please enter your ID: <input id="id_input" type="number" min="1" disabled></p>
+<p>IMPORTANT! By clicking the "Start!"-Button below you acknowledge that you are aware that keylogging will take
+place in the textbox on the next page! Even though mismatching words should be discarded, DO NOT enter any kind of
+sensitive data (e.g. passwords or personal information) on the next page!</p>
 <!-- TODO: ADD CHECKBOX FOR CONSENT OF KEYLOGGING!-->
-<button id="start_button" onclick="proceed()" disabled>Start!</button>
+<button id="start_button" disabled >Start!</button>
 <script src="welcomeSite.js"></script>
 </body>
 </html>

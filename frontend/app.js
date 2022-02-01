@@ -35,6 +35,12 @@ function sendData(data) {
 
 var subtract = 0;
 var typingData = {};
+var id = sessionStorage.getItem("id");
+var age = sessionStorage.getItem("age");
+var layout = sessionStorage.getItem("layout");
+var keyboard = sessionStorage.getItem("keyboard");
+var proficiency = sessionStorage.getItem("proficiency");
+var student = sessionStorage.getItem("student");
 
 document.getElementById("typed").addEventListener("keydown", function (event) {
     var key_name = event.key.toLowerCase();
@@ -81,18 +87,18 @@ document.getElementById("typed").addEventListener("keyup", function (event) {
 
     if(document.getElementById("typed").value === current && key_name === current.slice(-1)) {
         if(Object.keys(typingData).length === current.length*3) { //Check for clear typing (no typos etc.)
-            var dummy = {
-                "userID": 1,
-                "age": 22,
-                "typingSkill": 3,
-                "layout": "qwertz",
-                "word": "water",
-                "timings": typingData
+            var data = {
+                "userID": id,
+                "age": age,
+                "typingSkill": proficiency,
+                "layout": layout,
+                "keyboard": keyboard,
+                "word": current,
+                "timings": typingData,
+                "comp_sci_student": student
             }
 
-            // TODO: Send Data to Backend for Database
-            // TODO: After implementing: Check if fast typing still pushes past hold and up times into next Object!
-            sendData(dummy);
+            sendData(data);
         }
         document.getElementById("typed").value = '';
         typingData = {};
