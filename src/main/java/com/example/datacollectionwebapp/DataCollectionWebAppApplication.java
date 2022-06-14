@@ -4,16 +4,22 @@ import com.example.controller.WordController;
 import com.example.repositories.TypingDataRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses = WordController.class)
 @EnableMongoRepositories(basePackageClasses = TypingDataRepository.class)
-public class DataCollectionWebAppApplication {
+public class DataCollectionWebAppApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(DataCollectionWebAppApplication.class, args);
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(DataCollectionWebAppApplication.class);
+    }
 }

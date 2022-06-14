@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
@@ -14,28 +13,27 @@ public class WordController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/word")
     @CrossOrigin
-    public String getRandomWord() {
+    public String getRandomWord(@RequestParam String wordnumber) {
         // TODO: Read file, pick random word, respond
-        // System.out.println("Request received!");
         Random random = new Random();
-        int amountLines = 57;
+        int amountLines = 41; // 57
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader("backend/src/main/resources/WordPool.txt"));
+            reader = new BufferedReader(new FileReader("/opt/tomcat/webapps/DataCollectionWebApp/WEB-INF/classes/WordPool.txt")); //src/main/resources/WordPool.txt
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        int randint = random.nextInt(amountLines-1)+1; //TODO: Variable File length
+        // int randint = random.nextInt(amountLines-1)+1; //TODO: Variable File length
         String out = "";
-        for(int i = 0; i < randint; i++) {
+        for(int i = 0; i <= Integer.parseInt(wordnumber); i++) {
             try {
-                out = reader.readLine();
+                if(reader != null) {
+                    out = reader.readLine();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        //System.out.println(out);
         return out;
     }
-
 }
